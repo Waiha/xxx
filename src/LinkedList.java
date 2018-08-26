@@ -40,27 +40,32 @@ public class LinkedList {
 
     public void reverse()
     {
-        Node n = head;
-        Node n1 = null;
-        Node n2 = null;
-        while (n != null)
+        Node current = head;
+        Node prev = null;
+        while (current != null)
         {
-            n2 = n.next;
-            n.next = n1;
-            n1 = n;
-            n = n2;
+            Node temp = current.next;
+            current.next = prev;
+            prev = current;
+            current = temp;
         }
 
-
+        head = prev;
     }
 
-    public void show() {
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
         Node node = head;
-        while (node.next != null) {
-            System.out.println(node.data);
+        builder.append('[');
+        while (node != null) {
+            builder.append(node.data);
+            builder.append(',');
             node = node.next;
         }
-        System.out.println(node.data);
+        builder.append(']');
+
+        return builder.toString();
     }
 }
 
